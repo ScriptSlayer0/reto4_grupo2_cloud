@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Compra de Entradas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/compra_entradas.css">
+</head>
+
+<body class="container py-4">
+
+  <h2 class="mb-4">Compra de Entradas</h2>
+
+  <form id="formulario" action="#" method="POST" class="needs-validation" novalidate>
+    <!-- Datos personales -->
+    <div class="mb-3">
+      <label for="dni" class="form-label">DNI</label>
+      <input type="text" class="form-control" id="dni" name="dni" placeholder="12345678A" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="apellidos" class="form-label">Apellidos</label>
+      <input type="text" class="form-control" id="apellidos" name="apellidos" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="ejemplo@correo.com" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="edad" class="form-label">Edad</label>
+      <input type="number" class="form-control" id="edad" name="edad" min="1" max="120" required disabled>
+    </div>
+
+    <!-- Tipo de entrada -->
+    <div class="mb-3">
+      <label for="tipo" class="form-label">Tipo de Entrada</label>
+      <select class="form-select" id="tipo" name="tipo">
+        <option value="" selected disabled>Elije una zona</option>
+        <option value="infantil">Infantil</option>
+        <option value="adulto_zona1">Adulto - Zona 1</option>
+        <option value="adulto_zona2">Adulto - Zona 2</option>
+      </select>
+    </div>
+
+    <!-- Precio -->
+    <div class="mb-3">
+      <button type="button" class="btn btn-info" onclick="calcularPrecio()">Calcular Precio</button>
+      <input type="text" class="form-control mt-2" id="precio">
+    </div>
+
+    <!-- Condiciones -->
+    <div class="mb-3">
+      <label class="form-label fw-bold">Condiciones del Contrato</label>
+      <div id="condiciones">
+        <h6>1. Política de Devoluciones</h6>
+        <ul>
+          <li>No se admiten devoluciones ni cambios una vez realizada la compra.</li>
+          <li>En caso de cancelación del evento, se procederá al reembolso íntegro del importe.</li>
+          <li>Las entradas no son transferibles a otras fechas.</li>
+        </ul>
+
+        <h6>2. Validez de la Entrada</h6>
+        <ul>
+          <li>La entrada es válida únicamente para el día y horario indicado.</li>
+          <li>El acceso requiere presentar la entrada impresa o en formato digital junto con un documento de identidad.</li>
+          <li>Las entradas infantiles requieren que el menor esté acompañado por un adulto.</li>
+        </ul>
+
+        <h6>3. Normas del Recinto</h6>
+        <ul>
+          <li>Está prohibido introducir bebidas alcohólicas, armas o cualquier objeto peligroso.</li>
+          <li>Se reserva el derecho de admisión y permanencia en el recinto.</li>
+          <li>El comportamiento inadecuado puede resultar en la expulsión del evento sin derecho a reembolso.</li>
+          <li>No está permitido fumar en las gradas y zonas cerradas.</li>
+        </ul>
+
+        <h6>4. Seguridad y Responsabilidad</h6>
+        <ul>
+          <li>La organización no se hace responsable de objetos personales perdidos o robados.</li>
+          <li>En caso de emergencia, siga las instrucciones del personal de seguridad.</li>
+          <li>El evento puede ser cancelado o suspendido por razones de seguridad o fuerza mayor.</li>
+        </ul>
+
+        <h6>5. Protección de Datos</h6>
+        <ul>
+          <li>Sus datos personales serán tratados conforme al RGPD y la legislación vigente.</li>
+          <li>Los datos se utilizarán únicamente para la gestión de la entrada y comunicaciones relacionadas con el evento.</li>
+          <li>Puede ejercer sus derechos de acceso, rectificación y supresión en cualquier momento.</li>
+        </ul>
+
+        <h6>6. Fotografía y Grabación</h6>
+        <ul>
+          <li>Al acceder al evento, consiente que su imagen pueda aparecer en fotografías y vídeos de promoción.</li>
+          <li>Está permitido grabar y fotografiar para uso personal, pero no con fines comerciales.</li>
+        </ul>
+
+        <h6>7. Condiciones Meteorológicas</h6>
+        <ul>
+          <li>El evento se realizará independientemente de las condiciones meteorológicas, salvo decisión de la organización por motivos de seguridad.</li>
+          <li>No se reembolsarán entradas por lluvia u otras condiciones climáticas adversas.</li>
+        </ul>
+
+        <h6>8. Aceptación de Términos</h6>
+        <ul>
+          <li>La compra de la entrada implica la aceptación íntegra de estas condiciones.</li>
+          <li>La organización se reserva el derecho de modificar estas condiciones, notificándolo con antelación.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Aceptar condiciones -->
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" id="acepto">
+      <label class="form-check-label" for="acepto">
+        He leído y acepto las condiciones del contrato
+      </label>
+    </div>
+
+    <!-- Botón que lanza el modal de compra -->
+    <button type="button" class="btn btn-success" id="comprar" data-bs-toggle="modal" data-bs-target="#modalCompra" disabled>Comprar Entrada</button>
+
+    <!-- Botón que lanza el modal de cancelación -->
+    <div class="mt-3">
+      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalCancelar">Volver a Inicio</button>
+    </div>
+  </form>
+
+  <!-- Modal de Confirmación de Compra -->
+  <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCompraLabel">Confirmación de Compra</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          ¿Deseas confirmar la compra de las entradas?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Confirmar</button>
+          <button type="button" class="btn btn-success" id="confirmarCompra">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Confirmación de Cancelación -->
+  <div class="modal fade" id="modalCancelar" tabindex="-1" aria-labelledby="modalCancelarLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCancelarLabel">Confirmar Cancelación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          ¿Estás seguro de que deseas cancelar la compra y salir del formulario?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <button type="button" class="btn btn-danger" id="confirmarCancelacion">Sí, cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./JS/compra_entradas.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
