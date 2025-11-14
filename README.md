@@ -6,11 +6,11 @@ Usando nano creamos un archivo llamado `duck.sh`:
 ![[creacion_duck_sh.png]]
 Insertamos este texto:
 ![[script 1.png]]
-Cambiamos los permisos al archivo `duck.sh`:
+Cambiamos los permisos al archivo "duck.sh":
 ![[permisos_script.png]]
 Creamos la tarea programada y seleccionamos la opción 1 (para usar nano):
 ![[añadir_tarea_programada.png]]
-Nos aseguramos que el servicio cron este `enabled` y `running`:
+Nos aseguramos que el servicio cron este enabled y running:
 (Para ello usa los comandos)
 ```bash
 sudo systemctl enable cron
@@ -20,7 +20,7 @@ sudo systemctl status cron
 ```
 
 Ejecutamos el script:
-![[ejecutar_script.png]]
+![[duckdns_capturas/script.PNG]]
 
 Finalmente revisamos si esta asignado:
 ![[demo_duck_dns.png]]
