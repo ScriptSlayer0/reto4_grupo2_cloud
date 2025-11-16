@@ -1,9 +1,5 @@
 # reto4_grupo2_cloud
-## Demostración página web
-(En este caso es HTPPS con Github)
-https://scriptslayer0.github.io/reto4_grupo2_cloud/
 
-<br><br>
 ## Instalación Duck DNS en AWS
 
 1. Crear la carpeta DuckDNS
@@ -43,8 +39,8 @@ sudo systemctl status cron
 6. Finalmente revisamos si esta asignado
 
 ![](duckdns_capturas/demo_duck_dns.PNG)
-<br><br>
-## Directorios
+
+## rama de directorios
 ```
 ubuntu@ip-172-31-66-114:/var/www/javascript$ tree
 .
@@ -133,7 +129,7 @@ ubuntu@ip-172-31-66-114:/var/www/javascript$ tree
 11 directories, 71 files
 ```
 
-## Muestra página web (En Amazon AWS)
+## Muestra página web
 
 ![](nginx_capturas/demo_pagina_https.PNG)
 
